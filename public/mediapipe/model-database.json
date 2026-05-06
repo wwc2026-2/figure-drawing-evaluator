@@ -1,0 +1,51 @@
+{
+  "description": "MediaPipe 模型源数据库。工程默认优先使用本地/校内/国内云存储模型源，再尝试官方源。",
+  "activePolicy": "local-first",
+  "sources": [
+    {
+      "id": "local-project",
+      "name": "项目本地模型库",
+      "region": "same-origin",
+      "priority": 1,
+      "wasmPath": "/mediapipe/wasm",
+      "poseModelPath": "/mediapipe/models/pose_landmarker_full.task",
+      "note": "推荐。把 task 模型文件放到 public/mediapipe/models 后即可使用。"
+    },
+    {
+      "id": "campus-server",
+      "name": "学校/学院服务器模型库",
+      "region": "China Mainland",
+      "priority": 2,
+      "wasmPath": "https://your-school-domain.example.com/mediapipe/wasm",
+      "poseModelPath": "https://your-school-domain.example.com/mediapipe/models/pose_landmarker_full.task",
+      "note": "把模型放到学校服务器、校园网服务器或学院服务器后，将此处替换成真实地址。"
+    },
+    {
+      "id": "aliyun-oss",
+      "name": "阿里云 OSS 模型库",
+      "region": "China Mainland",
+      "priority": 3,
+      "wasmPath": "https://your-bucket.oss-cn-hangzhou.aliyuncs.com/mediapipe/wasm",
+      "poseModelPath": "https://your-bucket.oss-cn-hangzhou.aliyuncs.com/mediapipe/models/pose_landmarker_full.task",
+      "note": "可将模型文件上传到阿里云 OSS，并开启公共读或签名访问。"
+    },
+    {
+      "id": "tencent-cos",
+      "name": "腾讯云 COS 模型库",
+      "region": "China Mainland",
+      "priority": 4,
+      "wasmPath": "https://your-bucket.cos.ap-shanghai.myqcloud.com/mediapipe/wasm",
+      "poseModelPath": "https://your-bucket.cos.ap-shanghai.myqcloud.com/mediapipe/models/pose_landmarker_full.task",
+      "note": "可将模型文件上传到腾讯云 COS，并开启公共读或签名访问。"
+    },
+    {
+      "id": "official-google",
+      "name": "Google 官方模型源",
+      "region": "Global",
+      "priority": 99,
+      "wasmPath": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm",
+      "poseModelPath": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task",
+      "note": "官方源。在中国大陆访问可能不稳定，仅作为兜底。"
+    }
+  ]
+}
